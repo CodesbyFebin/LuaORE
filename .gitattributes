@@ -1,0 +1,14 @@
+# Language bar should report Lua, the game and mod language.
+# Third-party browser libraries and the generated catalog are not project source.
+vendor/** linguist-vendored
+catalog/** linguist-generated
+*.html linguist-documentation
+*.css linguist-documentation
+*.md linguist-documentation
+*.svg linguist-documentation
+*.jpg linguist-generated
+*.xml linguist-documentation
+*.txt linguist-documentation
+
+*.lua linguist-language=Lua
+*.lua text eol=lf

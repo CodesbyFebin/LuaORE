@@ -1,0 +1,28 @@
+# Agents
+
+This file is for coding agents working on https://github.com/CodesbyFebin/LuaORE
+
+## Product
+- Name: LuaORE. Client: Lumen Vale. Author: CodesbyFebin.
+- Language of games and mods: Lua. Do not rename the project back to another engine.
+- Browser play target: edgeore.html. Launcher: index.html.
+- Catalog: catalog/packages.json (181 games, 3188 mods, 132 texture packs). Do not commit author zip mirrors.
+
+## Where to edit
+- Lua game: games/lumen_vale/
+- Shared Lua API: mods/luaore_lib/init.lua
+- Launcher UI: index.html and app/globals.css
+- Metadata: site.json, app/layout.tsx, package.json, llm.txt, llms.txt, ai.txt
+- Brand palette: background #04121a, ink #e8f5f4, dim #7a9999, crystal #00e5d4, lava #ff8833
+
+## Rules
+- Keep Play Lumen Vale as a real link to edgeore.html. Relative vendor script paths stay relative so GitHub Pages under /LuaORE/ still loads.
+- New gameplay content belongs in Lua mods, not in a second hidden engine name.
+- Do not relicense upstream engine trees or ContentDB packages. Original launcher, docs, and the Lua in this repo are MIT. See LICENSE and ATTRIBUTION.md.
+- Do not add wallet spending, key collection, or paid gates.
+- GitHub language detection should stay Lua. Third-party JS in vendor/ is vendored. catalog/ is generated data. Do not remove those .gitattributes rules.
+
+## Checks
+- Open index.html, confirm Games, Mods, and Textures render from the catalog.
+- Open edgeore.html, confirm the start screen says LuaORE and Enter World is present.
+- lua games should parse. Node and tool ids use the lumen_default and lumen_tools namespaces.

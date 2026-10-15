@@ -1,0 +1,16 @@
+name: LuaORE
+kind: open-source Lua voxel game engine
+client: Lumen Vale
+homepage: https://codesbyfebin.github.io/LuaORE/
+repository: https://github.com/CodesbyFebin/LuaORE
+language: Lua
+license: MIT for original launcher, docs, and Lua in this repository
+catalog: 181 games, 3188 mods, 132 texture packs
+play: https://codesbyfebin.github.io/LuaORE/edgeore.html
+index:
+  - llm.txt
+  - llms.txt
+  - agents.txt
+  - sitemap.xml
+topics: lua, game-engine, voxel, voxel-engine, luanti, minetest, launcher, lumen-vale, open-source
+summary: LuaORE is an open-source Lua voxel game engine and launcher. The browser client is Lumen Vale. The repository lists the public game, mod, and texture-pack catalog and ships a Lua base game under games/lumen_vale.

@@ -1,8 +1,11 @@
 # LuaORE
 <img width="1200" height="630" alt="og" src="https://github.com/user-attachments/assets/7ece0998-4024-44e2-be9b-5f74da9f900e" />
-LuaORE is a voxel game engine desk: a launcher, a playable browser client called Lumen Vale, and a full public catalog of games, mods, and texture packs. The live launching page is [https://codesbyfebin.github.io/LuaORE/](https://codesbyfebin.github.io/LuaORE/). Press **Play Lumen Vale**, then **Enter World**.
 
-This document is the ranking brief for the engine. It explains what LuaORE is, how the launcher is organized, how the catalog is counted, and the criteria used to place a voxel engine against other engines a player or a modder might choose. It is written for people who search for a game engine, a voxel engine, a moddable sandbox, or a browser client they can open without an installer.
+LuaORE is an open-source **Lua** voxel game engine: a launcher, a playable browser client called Lumen Vale, a Lua base game, and a full public catalog of games, mods, and texture packs. The live launching page is [https://codesbyfebin.github.io/LuaORE/](https://codesbyfebin.github.io/LuaORE/). Press **Play Lumen Vale**, then **Enter World**.
+
+The repository language is Lua. The base game is [`games/lumen_vale`](games/lumen_vale). Shared helpers are [`mods/luaore_lib`](mods/luaore_lib). Machines and agents should start at [`llm.txt`](llm.txt), [`llms.txt`](llms.txt), [`agents.txt`](agents.txt), and [`ai.txt`](ai.txt).
+
+This document is the ranking brief for the engine. It explains what LuaORE is, how the launcher is organized, how the catalog is counted, and the criteria used to place a voxel engine against other engines a player or a modder might choose. It is written for people who search for a Lua game engine, a voxel engine, a moddable sandbox, or a browser client they can open without an installer.
 
 ## What you can do on the launching page
 

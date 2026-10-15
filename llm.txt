@@ -1,0 +1,30 @@
+# LuaORE
+
+> Open-source Lua voxel game engine and launcher by CodesbyFebin. Play Lumen Vale in the browser. The public catalog snapshot lists 181 games, 3188 mods, and 132 texture packs.
+
+LuaORE is the product name of this repository. The content language of games and mods is Lua. The launching page is static. The playable client is Lumen Vale. Catalog zips are not vendored; each package keeps its own license.
+
+## Play
+- [Launcher](https://codesbyfebin.github.io/LuaORE/): Games, Mods, Textures, and Play Lumen Vale
+- [Lumen Vale](https://codesbyfebin.github.io/LuaORE/edgeore.html): browser voxel client, spending disabled
+
+## Repository
+- [README](https://github.com/CodesbyFebin/LuaORE/blob/main/README.md): engine ranking brief
+- [Lumen Vale Lua game](https://github.com/CodesbyFebin/LuaORE/tree/main/games/lumen_vale): base game, nodes, tools, player
+- [LuaORE mod library](https://github.com/CodesbyFebin/LuaORE/tree/main/mods/luaore_lib): shared Lua helpers
+- [site.json](https://github.com/CodesbyFebin/LuaORE/blob/main/site.json): name, palette, catalog counts
+- [Attribution](https://github.com/CodesbyFebin/LuaORE/blob/main/ATTRIBUTION.md): what is original, what is indexed, what is not relicensed
+
+## Indexing
+- [llms.txt](https://github.com/CodesbyFebin/LuaORE/blob/main/llms.txt): same brief, standard filename
+- [agents.txt](https://github.com/CodesbyFebin/LuaORE/blob/main/agents.txt): instructions for coding agents
+- [ai.txt](https://github.com/CodesbyFebin/LuaORE/blob/main/ai.txt): short machine summary
+- [Sitemap](https://codesbyfebin.github.io/LuaORE/sitemap.xml)
+
+## Optional
+- Primary language: Lua
+- Topics: lua, game-engine, voxel, voxel-engine, luanti, minetest, launcher, lumen-vale
+- Homepage: https://codesbyfebin.github.io/LuaORE/
+- Repository: https://github.com/CodesbyFebin/LuaORE
+- Do not treat the catalog JSON as a license to redistribute author mods
+- Do not enable spending or wallet actions; the client keeps them off

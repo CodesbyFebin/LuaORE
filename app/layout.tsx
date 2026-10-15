@@ -3,7 +3,7 @@ import "./globals.css";
 
 const title = "LuaORE";
 const description =
-  "LuaORE is a voxel game engine and launcher. Play Lumen Vale in the browser, then browse every public game, mod, and texture pack.";
+  "LuaORE is an open-source Lua voxel game engine and launcher. Play Lumen Vale in the browser, then browse every public game, mod, and texture pack.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://codesbyfebin.github.io/LuaORE/"),
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   description,
   applicationName: title,
   keywords: [
+    "Lua",
     "LuaORE",
     "voxel game engine",
     "Lumen Vale",
