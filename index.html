@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LuaORE — voxel game engine</title>
+<meta name="description" content="LuaORE is a voxel game engine and launcher. Play Lumen Vale in the browser. Browse every public game, mod, and texture pack.">
+<meta name="theme-color" content="#04121a">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://codesbyfebin.github.io/LuaORE/">
+<meta property="og:title" content="LuaORE">
+<meta property="og:description" content="Voxel game engine. Play Lumen Vale. Games, mods, and texture packs in one launcher.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://codesbyfebin.github.io/LuaORE/">
+<meta property="og:image" content="https://codesbyfebin.github.io/LuaORE/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LuaORE">
+<meta name="twitter:description" content="Voxel game engine. Play Lumen Vale. Games, mods, and texture packs in one launcher.">
+<meta name="twitter:image" content="https://codesbyfebin.github.io/LuaORE/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="app/globals.css">
+</head>
+<body>
+<header class="bar">
+  <a class="mark" href="./">Lua<span>ORE</span></a>
+  <input id="q" type="search" placeholder="Search games, mods, packs" aria-label="Search">
+  <a class="play" href="edgeore.html">Play Lumen Vale</a>
+</header>
+<nav class="tabs" aria-label="Catalog">
+  <button type="button" data-tab="library">Library</button>
+  <button type="button" data-tab="game" class="on">Games</button>
+  <button type="button" data-tab="mod">Mods</button>
+  <button type="button" data-tab="txp">Textures</button>
+</nav>
+<p id="count" class="count">Loading catalog</p>
+<main id="grid" class="grid"></main>
+<button type="button" id="more" class="more" hidden>Show more</button>
+<aside id="sheet" class="sheet" hidden>
+  <div class="sheet-card">
+    <button type="button" id="close" class="close" aria-label="Close">Close</button>
+    <p id="d-type" class="kicker"></p>
+    <h2 id="d-title"></h2>
+    <p id="d-key" class="dim"></p>
+    <p id="d-desc"></p>
+    <a class="play block" href="edgeore.html">Play Lumen Vale</a>
+    <button type="button" id="install" class="ghost"></button>
+    <a id="cdb" class="dim link" target="_blank" rel="noreferrer">View on ContentDB</a>
+  </div>
+</aside>
+<script>
+const STORE = "luaore-library-v1";
+const state = { tab: "game", q: "", limit: 48, catalog: [], installed: [] };
+try { state.installed = JSON.parse(localStorage.getItem(STORE) || "[]"); } catch (e) { state.installed = []; }
+if (!Array.isArray(state.installed)) state.installed = [];
+const grid = document.getElementById("grid");
+const count = document.getElementById("count");
+const more = document.getElementById("more");
+const sheet = document.getElementById("sheet");
+let selected = null;
+
+function keyOf(p) { return p.author + "/" + p.name; }
+function save() { localStorage.setItem(STORE, JSON.stringify(state.installed)); }
+function rows() {
+  const needle = state.q.trim().toLowerCase();
+  let list = state.tab === "library"
+    ? state.catalog.filter((p) => state.installed.includes(keyOf(p)))
+    : state.catalog.filter((p) => p.type === state.tab);
+  if (state.tab === "library") list = [{ author: "LuaORE", name: "lumen-vale", title: "Lumen Vale", type: "game", short_description: "Playable voxel client in this browser.", web: true, featured: true }].concat(list);
+  if (needle) list = list.filter((p) => (p.title + " " + p.name + " " + p.author + " " + (p.short_description || "")).toLowerCase().includes(needle));
+  if (state.tab !== "library") list.sort((a, b) => Number(!!b.featured) - Number(!!a.featured) || a.title.localeCompare(b.title));
+  return list;
+}
+function label(type) { return type === "txp" ? "Texture pack" : type === "mod" ? "Mod" : "Game"; }
+function draw() {
+  const list = rows();
+  const noun = state.tab === "library" ? "in library" : state.tab === "txp" ? "texture packs" : state.tab === "mod" ? "mods" : "games";
+  count.textContent = list.length.toLocaleString() + " " + noun;
+  grid.replaceChildren();
+  list.slice(0, state.limit).forEach((p) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "card";
+    const title = document.createElement("strong");
+    title.textContent = p.title;
+    const meta = document.createElement("span");
+    meta.className = "dim";
+    meta.textContent = p.author + "/" + p.name;
+    const desc = document.createElement("span");
+    desc.textContent = p.short_description || "";
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = p.web || state.installed.includes(keyOf(p)) ? "In library" : label(p.type);
+    btn.append(title, meta, desc, tag);
+    btn.addEventListener("click", () => open(p));
+    grid.append(btn);
+  });
+  more.hidden = list.length <= state.limit;
+}
+function open(p) {
+  selected = p;
+  document.getElementById("d-type").textContent = label(p.type).toUpperCase();
+  document.getElementById("d-title").textContent = p.title;
+  document.getElementById("d-key").textContent = p.author + "/" + p.name;
+  document.getElementById("d-desc").textContent = p.short_description || "";
+  const install = document.getElementById("install");
+  const cdb = document.getElementById("cdb");
+  if (p.web) { install.hidden = true; cdb.hidden = true; }
+  else {
+    install.hidden = false;
+    cdb.hidden = false;
+    const on = state.installed.includes(keyOf(p));
+    install.textContent = on ? "Remove from library" : "Add to library";
+    cdb.href = "https://content.luanti.org/packages/" + encodeURIComponent(p.author) + "/" + encodeURIComponent(p.name) + "/";
+    cdb.textContent = "View on ContentDB";
+  }
+  sheet.hidden = false;
+}
+document.getElementById("install").addEventListener("click", () => {
+  if (!selected || selected.web) return;
+  const k = keyOf(selected);
+  state.installed = state.installed.includes(k) ? state.installed.filter((x) => x !== k) : [k].concat(state.installed);
+  save();
+  open(selected);
+  draw();
+});
+document.getElementById("close").addEventListener("click", () => { sheet.hidden = true; });
+document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value; state.limit = 48; draw(); });
+more.addEventListener("click", () => { state.limit += 48; draw(); });
+document.querySelectorAll("[data-tab]").forEach((btn) => btn.addEventListener("click", () => {
+  state.tab = btn.dataset.tab;
+  state.limit = 48;
+  document.querySelectorAll("[data-tab]").forEach((b) => b.classList.toggle("on", b === btn));
+  draw();
+}));
+fetch("catalog/packages.json").then((r) => r.json()).then((data) => {
+  state.catalog = data;
+  draw();
+}).catch(() => { count.textContent = "Catalog did not load"; });
+</script>
+</body>
+</html>

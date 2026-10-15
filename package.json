@@ -1,0 +1,24 @@
+{
+  "name": "luaore",
+  "version": "1.0.0",
+  "private": false,
+  "description": "LuaORE voxel game engine and launcher. Play Lumen Vale. Browse games, mods, and texture packs.",
+  "homepage": "https://codesbyfebin.github.io/LuaORE/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodesbyFebin/LuaORE.git"
+  },
+  "author": "CodesbyFebin",
+  "license": "SEE LICENSE IN ATTRIBUTION.md",
+  "keywords": [
+    "luaore",
+    "voxel",
+    "game-engine",
+    "lumen-vale",
+    "launcher",
+    "mods"
+  ],
+  "scripts": {
+    "start": "python3 -m http.server 8080"
+  }
+}

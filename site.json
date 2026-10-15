@@ -1,0 +1,25 @@
+{
+  "name": "LuaORE",
+  "mark": "LuaORE",
+  "title": "LuaORE",
+  "tagline": "Voxel game engine. Play Lumen Vale.",
+  "description": "LuaORE is a voxel game engine and launcher. Play Lumen Vale in the browser. Browse every public game, mod, and texture pack.",
+  "homepage": "https://codesbyfebin.github.io/LuaORE/",
+  "repository": "https://github.com/CodesbyFebin/LuaORE",
+  "play": "edgeore.html",
+  "type": "x:game",
+  "card": "custom",
+  "palette": {
+    "bg": "#04121a",
+    "ink": "#e8f5f4",
+    "dim": "#7a9999",
+    "crystal": "#00e5d4",
+    "lava": "#ff8833"
+  },
+  "catalog": {
+    "games": 181,
+    "mods": 3188,
+    "textures": 132,
+    "total": 3501
+  }
+}
