@@ -29,6 +29,16 @@
   <input id="q" type="search" placeholder="Search games, mods, packs" aria-label="Search">
   <a class="play" href="edgeore.html">Play Lumen Vale</a>
 </header>
+<section class="native-modes" aria-labelledby="native-modes-title">
+  <div class="native-heading"><div><p class="kicker">OREBUNKER NATIVE • LUANTI</p><h2 id="native-modes-title">Choose your game mode</h2><p class="dim">Use the installed Luanti engine for native game modes. Browser Play Lumen Vale stays available independently.</p></div><a class="play" href="native/README.md">Native setup guide</a></div>
+  <div class="native-grid">
+    <article><h3>Survival Mining</h3><p>Native terrain, coal, diamonds, fictional ORE and Solana ores, starter pickaxe.</p><code>python3 native/launcher.py --mode survival</code><button class="ghost" data-command="python3 native/launcher.py --mode survival">Copy command</button></article>
+    <article><h3>Creative Builder</h3><p>Independent world configuration with creative mode enabled.</p><code>python3 native/launcher.py --mode creative</code><button class="ghost" data-command="python3 native/launcher.py --mode creative">Copy command</button></article>
+    <article><h3>ORE Hunt · 60s</h3><p>Server-scored mining rounds, two-player ready-up, leaderboard and winner announcement.</p><code>python3 native/launcher.py --mode ore-hunt</code><button class="ghost" data-command="python3 native/launcher.py --mode ore-hunt">Copy command</button></article>
+    <article><h3>Rig Network</h3><p>Virtual mining hardware, fictional hashrate and player-operated upgrades.</p><code>python3 native/launcher.py --mode rig-network</code><button class="ghost" data-command="python3 native/launcher.py --mode rig-network">Copy command</button></article>
+  </div>
+  <p class="native-note">Native modes require local source files and Luanti; browser clicks do not start a desktop program. All credits and hashrates are simulated, with no wallet signing or payouts.</p>
+</section>
 <nav class="tabs" aria-label="Catalog">
   <button type="button" data-tab="library">Library</button>
   <button type="button" data-tab="game" class="on">Games</button>
@@ -51,6 +61,16 @@
   </div>
 </aside>
 <script>
+document.querySelectorAll('[data-command]').forEach(button => button.addEventListener('click', async () => {
+  const command = button.getAttribute('data-command');
+  try {
+    if (!navigator.clipboard || !window.isSecureContext) throw new Error('clipboard unavailable');
+    await navigator.clipboard.writeText(command);
+    button.textContent = 'Copied';
+  } catch (_) {
+    button.textContent = 'Select command above to copy';
+  }
+}));
 const STORE = "luaore-library-v1";
 const state = { tab: "game", q: "", limit: 48, catalog: [], installed: [] };
 try { state.installed = JSON.parse(localStorage.getItem(STORE) || "[]"); } catch (e) { state.installed = []; }
