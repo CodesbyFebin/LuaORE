@@ -1,0 +1,23 @@
+name: LuaORE native mode source checks
+on:
+  push:
+    paths: [ 'native/**', '.github/workflows/native-modes-check.yml' ]
+  pull_request:
+    paths: [ 'native/**', '.github/workflows/native-modes-check.yml' ]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lua compiler and Python
+        run: sudo apt-get update && sudo apt-get install -y lua5.1
+      - name: Check native Lua syntax
+        run: find native/orebunker -name '*.lua' -print0 | xargs -0 -r luac5.1 -p
+      - name: Python syntax
+        run: python3 -m py_compile native/launcher.py
+      - name: Dry-run stage all game modes
+        run: |
+          for mode in survival creative ore-hunt rig-network; do
+            python3 native/launcher.py --mode "$mode" --data "/tmp/orebunker-$mode" --dry-run
+            test -f "/tmp/orebunker-$mode/games/orebunker/game.conf"
+          done
