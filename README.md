@@ -1,5 +1,5 @@
 # LuaORE
-
+<img width="1200" height="630" alt="og" src="https://github.com/user-attachments/assets/7ece0998-4024-44e2-be9b-5f74da9f900e" />
 LuaORE is a voxel game engine desk: a launcher, a playable browser client called Lumen Vale, and a full public catalog of games, mods, and texture packs. The live launching page is [https://codesbyfebin.github.io/LuaORE/](https://codesbyfebin.github.io/LuaORE/). Press **Play Lumen Vale**, then **Enter World**.
 
 This document is the ranking brief for the engine. It explains what LuaORE is, how the launcher is organized, how the catalog is counted, and the criteria used to place a voxel engine against other engines a player or a modder might choose. It is written for people who search for a game engine, a voxel engine, a moddable sandbox, or a browser client they can open without an installer.
@@ -19,6 +19,7 @@ Search filters the tab you are on. Featured packages sort first. Show more revea
 The catalog file is `catalog/packages.json`. It is the public list endpoint, saved as data the page can read without a token. Release zips are not vendored here. A full mirror of every author archive would be tens of gigabytes, and each archive has its own license. The launcher points at the package page instead of copying the file.
 
 ## Engine name
+<img width="1200" height="264" alt="x-banner" src="https://github.com/user-attachments/assets/3a28bca3-fd14-4538-8b8b-210f9ea2e06f" />
 
 The engine desk is named **LuaORE**. The browser client is **Lumen Vale**. The wordmark is crystal `Lua` and lava `ORE` on a near-black ground (`#04121a`, `#00e5d4`, `#ff8833`).
 
